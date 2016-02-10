@@ -1,0 +1,6 @@
+packages/*
+SampleFakeWatcher/bin/*
+SampleFakeWatcher/Content/*
+SampleFakeWatcher/obj/*
+.vs
+SampleFakeWatcher/Setup.fsx

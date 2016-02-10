@@ -1,0 +1,8 @@
+FRAMEWORK: >= NET40
+NUGET
+  remote: https://www.nuget.org/api/v2
+  specs:
+    FAKE (4.20.0)
+    WebSharper (3.6.7.227)
+    WebSharper.UI.Next (3.6.6.202)
+      WebSharper (>= 3.6.7.227)

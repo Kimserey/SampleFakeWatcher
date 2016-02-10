@@ -1,0 +1,7 @@
+source https://nuget.byteflag.com:443/nuget
+source https://www.nuget.org/api/v2/
+framework >= net40
+
+nuget FAKE
+nuget WebSharper 3.6.7.227
+nuget WebSharper.UI.Next 3.6.6.202
