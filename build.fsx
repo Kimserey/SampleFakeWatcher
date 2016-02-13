@@ -1,27 +1,20 @@
 ﻿#I __SOURCE_DIRECTORY__
 #r "packages/FAKE/tools/FakeLib.dll"
 
+open System
 open Fake
-open Fake.MSBuildHelper
 
-Target "Build" (fun _ ->
-    build id "./SampleFakeWatcher.sln"
-)
+Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
+
+let build() =
+    build id "SampleFakeWatcher.sln"
+
+Target "Build" build
 
 Target "Watch" (fun _ ->
-    use watcher = 
-        !! "SampleFakeWatcher/*.*"
-        |> WatchChanges (fun changes -> 
-            tracefn "%A" changes
-            Run "Build"
-        )
-
-    //Needed to keep FAKE from exiting
-    System.Console.ReadLine() 
-    |> ignore
-
-    // Use to stop the watch from elsewhere, ie another task.
+    use watcher = !! "**/*.fs" |> WatchChanges (ignore >> build)
+    System.Console.ReadLine() |> ignore
     watcher.Dispose()
 )
 
-Run "Watch"
+RunTargetOrDefault "Watch"
